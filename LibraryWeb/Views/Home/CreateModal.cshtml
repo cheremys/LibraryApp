@@ -1,0 +1,48 @@
+﻿<div class="modal fade" id="createBookModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog card border-success" role="document">
+        <form id="createBookForm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-success">Create a book</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="bookTiitle">Book title</label>
+                        <input type="text" class="form-control" id="bookTiitle" name="title" placeholder="Book titile" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookAuthor">Author</label>
+                        <input type="text" class="form-control" id="bookAuthor" name="author" placeholder="Author" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookDescription">Description</label>
+                        <textarea class="form-control" id="bookDescription" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="categorySelect">Category</label>
+                        <select class="form-control" id="categorySelect" name="categoryId" required>
+                            @foreach (var category in Model)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="publicationBookDate">Publication Date</label>
+                        <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" id="publicationBookDate" name="publicationDate" placeholder="Publication Date">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="createBookButton" type="submit" class="btn btn-outline-success">Save</button>
+                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

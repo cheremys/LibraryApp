@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LibraryWeb.Models.CategoryModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+<div id="booksContent" class="container" style="margin-top: 15px">
+    <div class="d-flex">
+        <div class="p-2 flex-grow-1">
+            <h2>Books</h2>
+        </div>
+        <div class="p-2">
+            <button type="button" class="btn btn-outline-primary btn-sm" data-whatever="addBook">Add Book</button>
+        </div>
+    </div>
+    <div>
+        @foreach (var category in Model)
+        {
+            <div class="form-group">
+                <div>
+                    <h3>
+                        @category.Name
+                    </h3>
+                </div>
+                <div id="@("category"+category.Id)" class="d-flex align-content-center flex-wrap">
+
+                    @foreach (var book in category.Books)
+                    {
+                        <div data-bookid="@book.Title" class="p-2 bg-light">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>
+                                        @book.Title
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">@book.Author</h5>
+                                    <p class="card-text">@book.Description</p>
+                                    <button type="button" class="btn btn-outline-danger btn-sm" data-whatever="deleteBook" data-title="@book.Title">Delete book</button>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    @if (book.PublicationDate.HasValue)
+                                    {
+                                        @book.PublicationDate.Value.ToString("MM/dd/yyyy")
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@Html.Partial("DeleteModal")
+@Html.Partial("CreateModal")
+@Html.Partial("BookTemplate")
